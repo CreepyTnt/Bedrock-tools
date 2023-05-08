@@ -41,6 +41,13 @@ You can backup minecraft settings (FOV, keyboard settings, ect.) like this.
 path = D:\minecraft_backup
 mc.backup_settings(path) #creates a new folder (options) inside of the provided location containing the options.txt file. this should not overwrite exsisting backups.
 ```
+### start Minecraft
+To start minecraft with or without [fov-changer](https://github.com/xroix/MCBE-Win10-FOV-Changer), run this function:
+``` python
+mc.start_game(False) #true starts minecraft and fov changer (if it's located in C:\Bedrock), false only sarts minecraft
+```
+
+
 
 ### More features such as add-on management coming soon!
 
