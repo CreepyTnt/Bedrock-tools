@@ -41,13 +41,35 @@ You can backup minecraft settings (FOV, keyboard settings, ect.) like this.
 path = D:\minecraft_backup
 mc.backup_settings(path) #creates a new folder (options) inside of the provided location containing the options.txt file. this should not overwrite exsisting backups.
 ```
+
+### Get world info
+The first step to get info for a particular world is to look up the folder that the world is located in using get_world_dict.
+``` python
+mc.get_world_dict()
+```
+After looking up the world's foder name, you can get info for it like this:
+``` python
+mc.get_world_info(folder_name)
+```
+### clear pack history
+After you get the world dict, you can clear resource and behavior pack history. This is especially usefull when deleting packs because in the game, packs may continue to show up after you delete them because the game retains a log of all applied packs. You can clear the pack history like this:
+``` python
+mc.clear_pack_history(folder_name) #this deletes things in your com.mojang folder so precede with caution.
+```
+
+
 ### start Minecraft
 To start minecraft with or without [fov-changer](https://github.com/xroix/MCBE-Win10-FOV-Changer), run this function:
 ``` python
 mc.start_game(False) #true starts minecraft and fov changer (if it's located in C:\Bedrock), false only sarts minecraft
 ```
 
-
+### import an add-on or world as .mcpack or .mcworld
+you can import a world or pack like this:
+``` python
+path = 'C:\path\to\world\or\pack'
+mc.import_pack(path)
+```
 
 ### More features such as add-on management coming soon!
 
