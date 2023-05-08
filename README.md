@@ -1,7 +1,7 @@
 # Bedrock-tools
 A suite of tools for Minecraft Bedrock such as automatic backups, add-on management, and more!
 
-## **Bedrock Tools only supports Windows 10/11
+## **Bedrock Tools currently only supports Windows 10/11, however, support for android may be added in the future
 
 # Installation
 
