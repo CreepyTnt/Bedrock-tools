@@ -71,6 +71,12 @@ path = 'C:\path\to\world\or\pack'
 mc.import_pack(path)
 ```
 
+### get resource pack info
+you can get info (name, uuid, discription, and version) of every resource pack like this:
+``` python
+mc.get_resource_pack_info() #returns a list of dictionaries containing info.
+```
+
 ### More features such as add-on management coming soon!
 
 *If you get errors with the paths, try changing "\\" to "\/" or "\\\\". https://stackoverflow.com/questions/2953834/how-should-i-write-a-windows-path-in-a-python-string-literal*
