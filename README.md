@@ -76,14 +76,33 @@ you can get info (name, uuid, discription, and version) of every resource pack l
 ``` python
 mc.get_resource_pack_info() #returns a list of dictionaries containing info.
 ```
+For some reason, the manifest files of some packs are not valid json and cannot be read. These will be skipped when getting pack info.
+
 
 ### get behavior pack info
 you can get info about behavior packs (name, description, uuid, and version) like this:
 ``` python
 mc.get_behavior_pack_info() #returns a list of dictionaries containing info.
 ```
+For some reason, the manifest files of some packs are not valid json and cannot be read. These will be skipped when getting pack info.
 
 
+### delete a resource pack
+To delete a resource pack, you will need to obtain the uuid of the pack using mc.get_resource_pack_info()
+``` python
+uuid = mc.get_resource_pack_info()['uuid']
+mc.delete_resource_pack (uuid)
+```
+Procede with caution!
+
+
+### delete a behavior pack
+To delete a behavior pack, you will need to obtain the uuid of the pack using mc.get_behavior_pack_info()
+``` python
+uuid = mc.get_behavior_pack_info()['uuid']
+mc.delete_behavior_pack (uuid)
+```
+Procede with caution!
 
 ### More features coming soon!
 
