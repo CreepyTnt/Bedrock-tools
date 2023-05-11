@@ -2,7 +2,8 @@ import os
 import shutil
 from datetime import datetime
 import json
-
+import getpass
+import time
 
 
 def get_options():
@@ -74,9 +75,115 @@ def backup_settings(backup_path):
         shutil.copytree(r'C:\Users\jenni\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\minecraftpe\options.txt', backup_path + '\\com.mojang\\options')
     print ('backup finished')
 
+def import_pack(path):# .mcpack or .mcworld
+
+    username = getpass.getuser()
+
+    os.system (path)
+
+def start_game(fov_changer = False):
+    if fov_changer:
+        try:
+            os.system('"C:\Bedrock\FOV-Changer.exe"')
+        except:
+            print ('fov-changer is not installed')
+    os.system('start minecraft://')
+
+def read(path):
+    f = open(path, 'r')
+    fdata = f.read()
+    f.close()
+    return (fdata)
+
+def get_world_info(folder):
+    name = read('C:\\Users\\jenni\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder +'\\levelname.txt')
+    resources = read('C:\\Users\\jenni\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_resource_packs.json')
+    behaviors = read ('C:\\Users\\jenni\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_behavior_packs.json')
+    path = 'C:\\Users\\jenni\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder
+
+    info = {
+        'name' : name,
+        'resources' : resources,
+        'behaviors' : behaviors,
+        'path' : path
+    }
+    return info
+
+
+def clear_pack_history(folder):
+    try:
+        os.remove('C:\\Users\\jenni\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_behavior_pack_history.json')
+        os.remove('C:\\Users\\jenni\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_resource_pack_history.json')
+        print('completed')
+    except:
+        print('completed')
+
+
+
+
+
+
+
+def get_resource_pack_info():
+    pack_list = []
+    resource_packs_path = r'C:\Users\jenni\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\resource_packs'
+    
+    for pack_name in os.listdir(resource_packs_path):
+        pack_folder_path = os.path.join(resource_packs_path, pack_name)
+        manifest_path = os.path.join(pack_folder_path, 'manifest.json')
+
+        if os.path.isdir(pack_folder_path) and os.path.isfile(manifest_path):
+            with open(manifest_path, 'r') as f:
+                try:
+                    manifest_data = json.load(f)
+                    pack_info = {
+                        'name': manifest_data.get('header', {}).get('name', ''),
+                        'uuid': manifest_data.get('header', {}).get('uuid', ''),
+                        'description': manifest_data.get('header', {}).get('description', ''),
+                        'version': manifest_data.get('header', {}).get('version', '')
+                    }
+                    pack_list.append(pack_info)
+                except json.JSONDecodeError as e:
+                    print(f"Error loading JSON in pack: {pack_name}. Error: {str(e)}")
+        else:
+            print(f"Invalid pack folder or manifest not found for pack: {pack_name}")
+
+    return pack_list
+
+
+def get_behavior_pack_info():
+    pack_list = []
+    behavior_packs_path = r'C:\Users\jenni\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\behavior_packs'
+    
+    for pack_name in os.listdir(behavior_packs_path):
+        pack_folder_path = os.path.join(behavior_packs_path, pack_name)
+        manifest_path = os.path.join(pack_folder_path, 'manifest.json')
+
+        if os.path.isdir(pack_folder_path) and os.path.isfile(manifest_path):
+            with open(manifest_path, 'r') as f:
+                try:
+                    manifest_data = json.load(f)
+                    pack_info = {
+                        'name': manifest_data.get('header', {}).get('name', ''),
+                        'uuid': manifest_data.get('header', {}).get('uuid', ''),
+                        'description': manifest_data.get('header', {}).get('description', ''),
+                        'version': manifest_data.get('header', {}).get('version', '')
+                    }
+                    pack_list.append(pack_info)
+                except json.JSONDecodeError as e:
+                    print(f"Error loading JSON in pack: {pack_name}. Error: {str(e)}")
+        else:
+            print(f"Invalid pack folder or manifest not found for pack: {pack_name}")
+
+    return pack_list
+
 
 
 #backup_main(installpath)
 #get_world_dict()
 #print (world_dict['test'])
 #backup_worlds(installpath)
+
+
+
+
