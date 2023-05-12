@@ -1,5 +1,5 @@
 # Bedrock-tools
-A suite of tools for Minecraft Bedrock such as automatic backups, add-on management, and more!
+A suite of tools for Minecraft Bedrock such as backups, add-on management, and more! This project is in development so please leave feedback about bugs.
 
 ## **Bedrock Tools currently only supports Windows 10/11, however, support for android may be added in the future
 
@@ -11,6 +11,9 @@ import bedrock_tools as mc
 ```
 
 # Usage
+
+### It is recommended that you take a manual backup of your minecraft worlds before using this because this project is still in development and could potentially delete r currupt your games saves if there is a glitch.
+
 
 ### Backup com.mojang
 You can backup the entire com.mojang folder (C:\Users\<username>\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang) like this:
@@ -103,6 +106,47 @@ uuid = mc.get_behavior_pack_info()['uuid']
 mc.delete_behavior_pack (uuid)
 ```
 Procede with caution!
+
+
+### export world
+After getting the folder name of your world using get_world_dict,
+``` python
+mc.get_world_dict
+```
+you can export the world like this:
+``` python
+mc.export_world (folder_name, export_path)
+```
+
+
+### disable resource packs
+you can disable all resource packs in a world like this:
+``` python
+mc.disable_resource_packs (world_folder) #you need to get the world folder name with mc.get_world_dict as previously explained.
+```
+
+### disable behavior packs
+you can disable all behavior packs in a world like this:
+``` python
+mc.disable_behavior_packs (world_folder) #you need to get the world folder name with mc.get_world_dict as previously explained.
+```
+
+
+### apply resource packs
+After you get the world folder and pack uuid as previously explained, you can apply resource packs like this:
+``` python 
+mc.apply_resource_packs(world_folder, uuid)
+```
+
+### apply resource packs
+After you get the world folder and pack uuid as previously explained, you can apply behavior packs like this:
+``` python 
+mc.apply_behavior_packs(world_folder, uuid)
+```
+
+
+
+
 
 ### More features coming soon!
 
