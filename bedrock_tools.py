@@ -247,7 +247,7 @@ def export_world(folder, path):
         print (f'file exists: {path}\world.mcworld')
         return (f'file exists: {path}\world.mcworld')
         
-def dissable_resource_packs(folder):
+def disable_resource_packs(folder):
     try:
         #os.remove(f'C:\\Users\\{username}\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_behavior_packs.json')
         os.remove(f'C:\\Users\\{username}\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_resource_packs.json')
@@ -263,7 +263,7 @@ def dissable_resource_packs(folder):
         print('no resource_packs file')
 
 
-def dissable_behavior_packs(folder):
+def disable_behavior_packs(folder):
     try:
         os.remove(f'C:\\Users\\{username}\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_behavior_packs.json')
         #os.remove(f'C:\\Users\\{username}\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds\\' + folder + '\\world_resource_packs.json')
