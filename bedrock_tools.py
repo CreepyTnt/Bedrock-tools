@@ -102,7 +102,7 @@ def import_pack(path):# .mcpack or .mcworld
 def start_game(fov_changer = False):
     if fov_changer:
         try:
-            os.system(f'C:\\Bedrock\\FOV-Changer.exe')
+            os.system(f'start C:\\Bedrock\\FOV-Changer.exe')
         except:
             print ('fov-changer is not installed')
     os.system('start minecraft://')
@@ -319,6 +319,10 @@ def apply_behavior_pack(world, uuid, version=[0, 0, 1]):
 
     #apply_resource_pack('test', '461deaee-c9a1-41a0-aca3-4585fd4eb839')
 
-
+def fov_changer():
+    try:
+        os.system(f'start C:\\Bedrock\\FOV-Changer.exe')
+    except:
+        print ('fov-changer is not installed')
 
 
