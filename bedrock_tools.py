@@ -4,6 +4,73 @@ import json
 import getpass
 import shutil
 import zipfile
+import tkinter as tk
+import tkinter.ttk as ttk
+
+
+
+
+def open_backup_settings_gui():
+    import tkinter as tk
+
+    def close_window():
+        root.destroy()
+
+    def update_values():
+        value1 = entry_var1.get()
+        value2 = entry_var2.get()
+        print("Updated values:")
+        set_options_backuplocation(value1)
+        set_options_backup_frequency(value2)
+        close_window()
+
+    root = tk.Tk()
+    root.geometry("400x300")  # Set window size to 4 times larger
+    root.title('Auto-Backup Settings')
+
+    options = get_options()
+ 
+    entry_var1 = tk.StringVar()
+    entry_var1.set(options['backup_path'])
+
+    entry_var2 = tk.StringVar()
+    entry_var2.set(options['days_between_backups'])
+
+    behavior_pack_uuid_label = tk.Label(root, text="Backup location:")
+    behavior_pack_uuid_label.pack()
+
+    entry1 = tk.Entry(root, textvariable=entry_var1, width=30)  # Enlarge the Entry widget
+    entry1.pack()
+
+
+    behavior_pack_uuid_label = tk.Label(root, text="Auto Backup Frequency (auto backups only occur when your pc is on):")
+    behavior_pack_uuid_label.pack()
+
+    entry2 = tk.Entry(root, textvariable=entry_var2, width=30)  # Enlarge the Entry widget
+    entry2.pack()
+
+    behavior_pack_uuid_label = tk.Label(root, text="days")
+    behavior_pack_uuid_label.pack()
+
+    behavior_pack_uuid_label = tk.Label(root, text=" ")
+    behavior_pack_uuid_label.pack()
+
+    button = tk.Button(root, text="apply", command=update_values, width=20)  # Enlarge the Button widget
+    button.pack()
+
+    button = tk.Button(root, text="cancel", command=close_window, width=20)  # Enlarge the Button widget
+    button.pack()
+
+    behavior_pack_uuid_label = tk.Label(root, text='For Windows users, make sure you use "\\\\" instead of "\\" or "/" in file paths.')
+    behavior_pack_uuid_label.pack()
+
+    root.mainloop()
+
+
+
+
+
+
 
 username = getpass.getuser()
 
@@ -36,6 +103,14 @@ def get_options():
         'days_between_backups' : days
     }
 
+def set_options_backuplocation(location):
+    with open ('C:\\Bedrock\\backup_location.txt', 'w') as f:
+        f.write(location)
+
+
+def set_options_backup_frequency(frequency):
+    with open ('C:\\Bedrock\\days_between_backups.txt', 'w') as f:
+        f.write(frequency)
 
 
 def get_world_dict():#creats a dictionary of all worlds
