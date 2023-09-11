@@ -1,3 +1,5 @@
+### This project is just the api for Bedrock Launcher (can be found on my profile). Because i am lazy and frequently forget I even have this repo open, this will be out of date sometimes. You can find the latest "bedrock_tools.py" file under my Bedrock Launcher repo.
+
 # Bedrock-tools
 A suite of tools for Minecraft Bedrock such as backups, add-on management, and more! This project is in development so please leave feedback about bugs.
 
